@@ -13,6 +13,12 @@ There are 6 basic types in JavaScript.
 
 ```js
 // Examples
+"bacon"
+true
+null
+123
+[x, x, x, x]
+{name: 'fred', age: 23}
 
 ```
 
@@ -54,7 +60,7 @@ let introduction = `The area of a circle is π^2.`
 let example = `So a ${diameter} pizza has an area of ${pi * radius * radius}.`
 
 // Concatenate the strings
-let text = intro + ' ' + example
+let text = introduction + ' ' + example
 
 console.log(text);
 // The area of a circle is π^2. So a 14 pizza has an area of 153.86.
@@ -159,14 +165,14 @@ Of course comparison operators and logical operators are usually combined in an 
 ```js
 // Look at these expressions below and determine whether they evaluate to true or false
 
-1. true || false
-2. false && false
-3. 1 < 2 && 2 > 1
-4. 31 < 13 || 1 < 2 && 3 > 1
-5. 400 <= 400 && 399 < 400 && (30 > 31 || 400 > 31)
-6. true && false && false || false && true
-7. true && false || true || false
-8. true && false && false || false && true ? true && false && false || false && true : 1 < 2 && 2 > 1
+1. true || false - true
+2. false && false - false
+3. 1 < 2 && 2 > 1 - true
+4. 31 < 13 || 1 < 2 && 3 > 1 - true
+5. 400 <= 400 && 399 < 400 && (30 > 31 || 400 > 31) - true
+6. true && false && false || false && true - false
+7. true && false || true || false - true
+8. true && false && false || false && true ? true && false && false || false && true : 1 < 2 && 2 > 1 - true
 ```
 
 ---
@@ -177,9 +183,9 @@ Of course comparison operators and logical operators are usually combined in an 
 - `NaN` stands for "Not a number" even though it is itself a value of type "number" 🤦‍♂️
 - `NaN` is not equivalent to anything – including another `NaN`!
 - Automatic type conversion 😲
-    - `8 * null`
-    - `"5" - 1`
-    - `"5" + 1`
+    - `8 * null` = 0
+    - `"5" - 1` = 4
+    - `"5" + 1` = 51
     - TODO: add a few more weirdnesses
 
 ```js
@@ -241,10 +247,10 @@ We reference the element of an array by its position (index) in the array.
 // Example 1 - Given this array
 let anArrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-1. anArrayOfNumbers[0]
-2. anArrayOfNumbers[5]
-3. anArrayOfNumbers[9]
-4. anArrayOfNumbers[10]
+1. anArrayOfNumbers[0] - 1
+2. anArrayOfNumbers[5] - 6
+3. anArrayOfNumbers[9] - 10
+4. anArrayOfNumbers[10] - undefined
 ```
 
 ---
@@ -256,7 +262,9 @@ let anArrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 let anArrayOfNumbers = ['bacon', undefined, 900, true]
 
 1. How do we access the value 900?
+anArrayOfNumbers[2]
 2. How do we access the value `true`?
+anArrayOfNumbers[3]
 
 ```
 
@@ -277,11 +285,12 @@ let table = [
   [31,32,33,34,35,36]
 ]
 
-1. table[0][0]
-2. table[5][5]
-3. table[2][3]
-4. How would we access the value 27?
+1. table[0][0] = 1
+2. table[5][5] = 36
+3. table[2][3] = 16
+4. How would we access the value 27?   table[4][2]
 ```
+
 
 ---
 
@@ -293,10 +302,9 @@ Given this data structure:
 let data = [0, [], [], [1,2,3, [4]]]
 ```
 
-1. How would you access the value `0`?
-2. How would you access the value `3`?
-3. How would you access the value `4`?
-
+1. How would you access the value `0`? data[0]
+2. How would you access the value `3`? data[3][2]
+3. How would you access the value `4`? data[3][3][0]
 ---
 
 ## Objects
@@ -309,7 +317,8 @@ This object has 3 properties.
 
 ```js
 // Example
-"it has a property with name 'givenName' and value of 'Yoda' of type string"
+let person = { givenName: 'Yoda'}
+person.givenName // 'Yoda'
 
 ```
 
@@ -323,7 +332,7 @@ Group the following items together according to their type:
 
 `'hello'`, `0`, `['mouse', 'cat', 'dog']`, `'cat'`, `false`,
 
-`null`, `7` `'42'`, `{product: 'cake', price: '50$'}`,
+`null`, `7`, `'42'`, `{product: 'cake', price: '50$'}`,
 
 `undefined`,` ['coconut', 24, 'banana']`, `-99`
 
@@ -343,8 +352,8 @@ Group the following items together according to their type:
 - For each property value, indicate the type.
 
 ```js
-{ label: 'corn', price: 5.3 + '$' };
-{ ISBN: 53532, isAvailable: true, author: 'Nakamoto' };
+{ label: 'corn', price: 5.3 + '$' }; - 2
+{ ISBN: 53532, isAvailable: true, author: 'Nakamoto' }; - 3
 
 ```
 
@@ -355,13 +364,18 @@ Group the following items together according to their type:
 Values in objects can be accessed with
 
 - dot notation
-- bracket notation
+- bracket notation *(objects are not ordered)*
 
 ```js
 // Example
 let person = {name: 'Bob', age: 23};
 const otherPerson = {name: 'Joe', age: 31, height: '170cm'};
 
+person.name // === 'Bob'
+person.age // === 23
+
+otherPerson['name'] // === 'Joe'
+otherPerson['height'] // === '170cm'
 ```
 
 ---
@@ -374,9 +388,9 @@ let person = {name: 'Bob', age: 23};
 let name = 'John';
 
 // What is the value of the following expressions?
-1. person.name
-2. person['name']
-3. person[name]
+1. person.name === 'Bob'
+2. person['name'] === 'Bob'
+3. person[name] === undefined ([name] without quotes is looking for a key of 'John' within person)
 
 ```
 
@@ -391,9 +405,9 @@ let person = {name: 'bob', age: 23};
 let key = 'name';
 
 // What is the value of the following expressions:
-1. person.key
-2. person['key']
-3. person[key]
+1. person.key // === undefined
+2. person['key'] // === undefined
+3. person[key] // === person['name'] === 'bob'
 
 ```
 

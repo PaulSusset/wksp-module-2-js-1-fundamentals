@@ -60,12 +60,21 @@ Turn the following sentences into valid JavaScript `if` statements. _Use console
 ```js
 // 1. If it rains, I stay home.
 let currentWeather = 'rainy';
-
+if (currentWeather ==='rainy') {
+    console.log('I stay home')
+}
 // 2. If I am hungry, I eat.
 let hunger = true;
-
+if (hunger === true) {
+    console.log('I eat')
+}
 // 3. If it's 10pm, I go to bed. If not, I write code.
 let currentHour = 22;
+if (currentHour >== 22 || currentHour <== 6 >) {
+    console.log('Go to bed')
+} else {
+    console.log('I write code')
+}
 
 ```
 
@@ -125,7 +134,16 @@ Let's write a function that outputs 2^10 (two to the power of ten).
 
 ```js
 // Example
+let x = 2;
+powerTen = 2 * 2 * 2 ...
 
+let x = 2
+let i = 1
+while (i ,<= 9) {
+    x = x * 2;
+    i = i + 1 // adding one can be written i++//
+}
+console.log(x)
 
 ```
 
@@ -160,6 +178,12 @@ for (let number = 0; number <=12; number = number + 1) {
 }
 
 // let's break that down.
+let number = 0;
+while (number <= 12) {
+    if (number % 2 === 0);
+    console.log(number)
+}
+number = number ++
 ```
 
 ---
@@ -179,7 +203,9 @@ for (let number = 0; number <=12; number = number + 1) {
 Write a program that output all of the numbers from 0 to 25
 
 ```js
-// code here
+for (let number = 0, number <= 25, number++){
+    console.log(number)
+}
 
 ```
 
@@ -190,7 +216,13 @@ Write a program that output all of the numbers from 0 to 25
 Write a program that output all of ODD the numbers from 0 to 25
 
 ```js
-// code here
+for (let number = 0, number <= 25, number++){
+    if (number 2 % === 1){
+    console.log(number)
+}
+for (let number = 1, number <= 25, number += 2 ){
+    console.log(number)
+}
 
 ```
 
@@ -201,7 +233,14 @@ Write a program that output all of ODD the numbers from 0 to 25
 Write a program that output all of the numbers from 0 to 25, but replaces all multipes of `5` by the phrase `five alive!`
 
 ```js
-// code here
+for (let i = 0; i <= 25; i++) {
+    if ( i % 5 === 0 && i!== 0) {
+        console.log('five alive!');
+    } else {
+        console.log(i);
+    }
+}
+
 
 ```
 
